@@ -35,11 +35,7 @@ async function initDb() {
   `);
 
   console.log('✅  Table `contacts` ready');
-  console.log('✅  Database initialised — run: npm run dev');
   await conn.end();
 }
 
-initDb().catch(err => {
-  console.error('❌  Init failed:', err.message);
-  process.exit(1);
-});
+module.exports = { initDb };
