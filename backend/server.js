@@ -14,8 +14,10 @@ const PORT = process.env.PORT;
 // ── Security headers
 app.use(helmet());
 
-// ── CORS — allow React frontend
+// ── Trust proxy (fixes rate-limit warning on Render)
 app.set('trust proxy', 1);
+
+// ── CORS — allow React frontend
 app.use(cors({
   origin: [
     process.env.CLIENT_URL || 'http://localhost:5173',
@@ -72,16 +74,12 @@ app.use((err, req, res, next) => {
   res.status(500).json({ success: false, message: 'Internal server error.' });
 });
 
-// ── Init DB then Start
-initDb()
-  .then(() => {
-    app.listen(PORT, '0.0.0.0', () => {
-      console.log(`\n🚀  Server running on http://localhost:${PORT}`);
-      console.log(`📡  Environment: ${process.env.NODE_ENV || 'development'}`);
-      console.log(`📋  API docs:    http://localhost:${PORT}/\n`);
-    });
-  })
-  .catch(err => {
-    console.error('❌ DB init failed:', err.message);
-    process.exit(1);
-  });
+// ── Start server first, THEN init DB
+// ── Server won't crash even if DB connection fails temporarily
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`\n🚀  Server running on http://localhost:${PORT}`);
+  console.log(`📡  Environment: ${process.env.NODE_ENV || 'development'}`);
+  console.log(`📋  API docs:    http://localhost:${PORT}/\n`);
+});
+
+initDb().catch(err => console.error('⚠️  DB init failed (non-fatal):', err.message));
