@@ -9,7 +9,7 @@ const contactRoutes = require('./routes/contact');
 const { initDb }    = require('./config/initDb');
 
 const app  = express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT;
 
 // ── Security headers
 app.use(helmet());
