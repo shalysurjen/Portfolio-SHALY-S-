@@ -1,10 +1,13 @@
 const nodemailer = require('nodemailer');
 
 const transporter = nodemailer.createTransport({
-  service: 'gmail',
+  host: 'smtp.gmail.com',
+  port: 465,
+  secure: true,
+  family: 4,             // ← Force IPv4 (fixes Render ENETUNREACH error)
   auth: {
-    user: process.env.MAIL_USER,   // your Gmail address
-    pass: process.env.MAIL_PASS,   // Gmail App Password (not your login password)
+    user: process.env.MAIL_USER,
+    pass: process.env.MAIL_PASS,
   },
 });
 
@@ -15,8 +18,8 @@ const transporter = nodemailer.createTransport({
 const sendContactNotification = async ({ name, email, subject, message }) => {
   const mailOptions = {
     from: `"Portfolio Contact" <${process.env.MAIL_USER}>`,
-    to: process.env.MAIL_TO || process.env.MAIL_USER, // where YOU receive it
-    replyTo: email,                                    // reply goes straight to sender
+    to: process.env.MAIL_TO || process.env.MAIL_USER,
+    replyTo: email,
     subject: `📬 Message: ${subject || '(no subject)'} — from ${name}`,
     html: `
       <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;background:#0f172a;color:#e2e8f0;border-radius:12px;overflow:hidden;">
