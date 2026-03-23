@@ -11,13 +11,14 @@ const pool = mysql.createPool({
   connectionLimit:    2,
   queueLimit:         0,
   enableKeepAlive:    true,
-  keepAliveInitialDelay: 0,
+  keepAliveInitialDelay: 30000,  // 30s — prevents idle disconnect
+  connectTimeout:        30000,
   ssl: {
     rejectUnauthorized: false
   }
 });
 
-// Test connection on startup
+// Test connection on startup — won't crash server if fails
 pool.getConnection()
   .then(conn => {
     console.log('✅  MySQL connected successfully');
@@ -25,7 +26,7 @@ pool.getConnection()
   })
   .catch(err => {
     console.error('❌  MySQL connection failed:', err.message);
-    process.exit(1);
+    // No process.exit — server stays alive, retries on next request
   });
 
 module.exports = pool;
