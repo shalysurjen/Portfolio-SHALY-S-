@@ -1,6 +1,11 @@
 import { useState } from 'react';
+import emailjs from '@emailjs/browser';
 import useScrollReveal from '../hooks/useScrollReveal';
 import { submitContact } from '../services/api';
+
+const EMAILJS_SERVICE_ID  = 'service_2jsgywn';
+const EMAILJS_TEMPLATE_ID = 'template_ymlpa99';
+const EMAILJS_PUBLIC_KEY  = 'GfnjJg05eYx5f_gBZ';
 
 const contactLinks = [
   {
@@ -48,7 +53,7 @@ export default function Contact() {
 
   const [form,    setForm]    = useState(initForm);
   const [loading, setLoading] = useState(false);
-  const [status,  setStatus]  = useState(null); // 'success' | 'error' | null
+  const [status,  setStatus]  = useState(null);
   const [errMsg,  setErrMsg]  = useState('');
 
   const handleChange = e => setForm(f => ({ ...f, [e.target.name]: e.target.value }));
@@ -57,18 +62,35 @@ export default function Contact() {
     e.preventDefault();
     setStatus(null);
     setLoading(true);
+
     try {
+      // 1. Save to DB (backend)
       await submitContact({
         name:    form.name.trim(),
         email:   form.email.trim(),
         subject: form.subject.trim(),
         message: form.message.trim(),
       });
+
+      // 2. Send email via EmailJS
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        {
+          name:    form.name.trim(),
+          email:   form.email.trim(),
+          subject: form.subject.trim(),
+          message: form.message.trim(),
+          time:    new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }),
+        },
+        EMAILJS_PUBLIC_KEY
+      );
+
       setStatus('success');
       setForm(initForm);
     } catch (err) {
       setStatus('error');
-      setErrMsg(err.message || 'Something went wrong. Please email me directly.');
+      setErrMsg(err?.text || err?.message || 'Something went wrong. Please email me directly.');
     } finally {
       setLoading(false);
     }
@@ -163,7 +185,6 @@ export default function Contact() {
                 />
               </div>
 
-              {/* Status banners */}
               {status === 'success' && (
                 <div style={{
                   padding:14, borderRadius:10, fontSize:14, textAlign:'center',
