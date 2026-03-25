@@ -1,6 +1,7 @@
 import useScrollReveal from '../hooks/useScrollReveal';
 import shoppingbot from '../assets/projects/shoppingbot.mp4';
 import instagramwireframe from '../assets/projects/InstaWireFrame.mp4';
+import junkfile from '../assets/projects/junkfile.jpg';
 
 const projects = [
   {
@@ -12,7 +13,7 @@ const projects = [
     github: 'https://github.com/shalysurjen/file-organizer-python',
     live: null,
     accent: '#38BDF8',
-    media: null,
+    media: junkfile,
     mediaType: 'image',
   },
   {
@@ -194,7 +195,7 @@ function ProjectCard({ project, index, delay }) {
       {/* Links */}
       <div style={{ display: 'flex', gap: 10 }}>
         <a href={project.github} target="_blank" rel="noreferrer" style={{
-          flex: project.live ? 1 : 'none',
+          flex: project.live ? 1 : 'none',  
           padding: '8px 16px', borderRadius: 8, textAlign: 'center',
           fontSize: 12, textDecoration: 'none', color: 'var(--muted)',
           border: '1px solid var(--glass-b)', background: 'transparent',

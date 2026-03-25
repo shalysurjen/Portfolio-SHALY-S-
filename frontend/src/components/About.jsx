@@ -1,4 +1,5 @@
 import useScrollReveal from '../hooks/useScrollReveal';
+import Aimarquee from './Aimarquee';
 
 const stats = [
   { value: '7.98', label: 'CGPA' },
@@ -109,6 +110,7 @@ export default function About() {
         @keyframes spin { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
         @media(max-width:768px){ .about-grid{ grid-template-columns:1fr !important; } }
       `}</style>
+      <Aimarquee />
     </section>
   );
 }
