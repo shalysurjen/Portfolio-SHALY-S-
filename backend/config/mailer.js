@@ -1,23 +1,15 @@
-const nodemailer = require('nodemailer');
+const { Resend } = require('resend');
 
-const transporter = nodemailer.createTransport({
-  host: 'smtp.gmail.com',
-  port: 465,
-  secure: true,        // SSL — required for port 465; works reliably on all deploy platforms
-  auth: {
-    user: process.env.MAIL_USER,
-    pass: process.env.MAIL_PASS,  // Gmail App Password (not your account password)
-  },
-});
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 /**
  * Sends a notification email to you when someone fills the contact form.
  * @param {{ name:string, email:string, subject:string, message:string }} data
  */
 const sendContactNotification = async ({ name, email, subject, message }) => {
-  const mailOptions = {
-    from: `"Portfolio Contact" <${process.env.MAIL_USER}>`,
-    to: process.env.MAIL_TO || process.env.MAIL_USER,
+  await resend.emails.send({
+    from: 'Portfolio Contact <onboarding@resend.dev>',
+    to: process.env.MAIL_TO,
     replyTo: email,
     subject: `📬 Message: ${subject || '(no subject)'} — from ${name}`,
     html: `
@@ -82,9 +74,7 @@ const sendContactNotification = async ({ name, email, subject, message }) => {
 
       </div>
     `,
-  };
-
-  await transporter.sendMail(mailOptions);
+  });
 };
 
 module.exports = { sendContactNotification };
