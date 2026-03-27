@@ -1,11 +1,6 @@
 import { useState } from 'react';
-import emailjs from '@emailjs/browser';
 import useScrollReveal from '../hooks/useScrollReveal';
 import { submitContact } from '../services/api';
-
-const EMAILJS_SERVICE_ID  = 'service_2jsgywn';
-const EMAILJS_TEMPLATE_ID = 'template_ymlpa99';
-const EMAILJS_PUBLIC_KEY  = 'GfnjJg05eYx5f_gBZ';
 
 const contactLinks = [
   {
@@ -64,7 +59,7 @@ export default function Contact() {
     setLoading(true);
 
     try {
-      // 1. Save to DB (backend)
+      // Save to DB + send email notification (backend handles both)
       await submitContact({
         name:    form.name.trim(),
         email:   form.email.trim(),
@@ -72,25 +67,11 @@ export default function Contact() {
         message: form.message.trim(),
       });
 
-      // 2. Send email via EmailJS
-      await emailjs.send(
-        EMAILJS_SERVICE_ID,
-        EMAILJS_TEMPLATE_ID,
-        {
-          name:    form.name.trim(),
-          email:   form.email.trim(),
-          subject: form.subject.trim(),
-          message: form.message.trim(),
-          time:    new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }),
-        },
-        EMAILJS_PUBLIC_KEY
-      );
-
       setStatus('success');
       setForm(initForm);
     } catch (err) {
       setStatus('error');
-      setErrMsg(err?.text || err?.message || 'Something went wrong. Please email me directly.');
+      setErrMsg(err?.message || 'Something went wrong. Please email me directly.');
     } finally {
       setLoading(false);
     }

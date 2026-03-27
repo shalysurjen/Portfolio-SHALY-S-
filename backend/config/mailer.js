@@ -2,15 +2,11 @@ const nodemailer = require('nodemailer');
 
 const transporter = nodemailer.createTransport({
   host: 'smtp.gmail.com',
-  port: 587,
-  secure: false,       // TLS (not SSL)
-  family: 4,           // Force IPv4
+  port: 465,
+  secure: true,        // SSL — required for port 465; works reliably on all deploy platforms
   auth: {
     user: process.env.MAIL_USER,
-    pass: process.env.MAIL_PASS,
-  },
-  tls: {
-    rejectUnauthorized: false,
+    pass: process.env.MAIL_PASS,  // Gmail App Password (not your account password)
   },
 });
 
