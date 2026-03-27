@@ -3,9 +3,10 @@ import emailjs from '@emailjs/browser';
 import useScrollReveal from '../hooks/useScrollReveal';
 import { submitContact } from '../services/api';
 
-const EMAILJS_SERVICE_ID  = 'service_2jsgywn';
-const EMAILJS_TEMPLATE_ID = 'template_ymlpa99';
-const EMAILJS_PUBLIC_KEY  = 'GfnjJg05eYx5f_gBZ';
+// const EMAILJS_SERVICE_ID  = 'service_2jsgywn';
+// const EMAILJS_TEMPLATE_ID = 'template_ymlpa99';
+// const EMAILJS_PUBLIC_KEY  = 'GfnjJg05eYx5f_gBZ';
+
 
 const contactLinks = [
   {
