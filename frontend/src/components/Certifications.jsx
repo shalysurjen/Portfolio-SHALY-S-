@@ -22,19 +22,19 @@ const certs = [
     issuer: 'Oracle',
     valid:  'Valid till Aug 2027',
     color:  '#F97316',
-    url:    'https://catalog-education.oracle.com/pls/certview/sharesandbadges',
+    url:    'https://www.linkedin.com/posts/shaly-s-528308255_oraclecloud-certification-oci-activity-7360197711628812288-mEAX?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAD7fLPAB5CsvMUyz6HoSJu8mctBy5iJiW8M',
   },
   {
     title:  'Microsoft Power BI Data Analyst Associate',
     issuer: 'ICT Academy',
     color:  '#F59E0B',
-    url:    '',
+    url:    'https://www.linkedin.com/posts/shaly-s-528308255_powerbi-dataanalyst-certifiedprofessional-activity-7195688710640672768-dqM3?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAD7fLPAB5CsvMUyz6HoSJu8mctBy5iJiW8M',
   },
   {
     title:  'Figma for UI/UX: Master Web Design in Figma',
     issuer: 'Packt · Coursera',
     color:  '#A78BFA',
-    url:    'https://www.coursera.org/account/accomplishments',
+    url:    'https://coursera.org/share/c9485a4f8ceb613ef8d6d625c5fcff07',
   },
   {
     title:  'Naan Mudhalvan RPA Diploma of Completion',
@@ -52,19 +52,19 @@ const certs = [
     title:  'Certified Security Expert Level-1',
     issuer: 'Supraja Technologies',
     color:  '#EF4444',
-    url:    '',
+    url:    'https://www.linkedin.com/posts/shaly-s-528308255_excited-to-share-that-i-completed-a-5-activity-7243627090527330304-yZ-T?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAD7fLPAB5CsvMUyz6HoSJu8mctBy5iJiW8M',
   },
   {
     title:  'Build a Full Website using WordPress',
     issuer: 'Coursera',
     color:  '#22C55E',
-    url:    'https://www.coursera.org/account/accomplishments',
+    url:    'https://coursera.org/share/2142c2c1cd347969711b9714eba1945b',
   },
   {
     title:  'Develop a Company Website with Wix',
     issuer: 'Coursera Project Network',
     color:  '#06B6D4',
-    url:    'https://www.coursera.org/account/accomplishments',
+    url:    'https://coursera.org/share/8fc9fc8d9cc1f82bda947b7228b96ddf',
   },
   {
     title:  'Junior Grade Typewriting (First Class with Distinction)',
@@ -77,6 +77,12 @@ const certs = [
     issuer: 'Skillsoft',
     color:  '#EC4899',
     url:    'https://www.skillsoft.com',
+  },
+  {
+    title:  'Use Canva to Design Digital Course Collateral',
+    issuer: 'Coursera',
+    color:  '#e6ec48ff',
+    url:    'https://coursera.org/share/254ffa2dbb2a642c8b8b55750a75047f',
   },
 ];
 

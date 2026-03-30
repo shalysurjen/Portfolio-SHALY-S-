@@ -5,12 +5,12 @@
 
 /* ── Root tokens ───────────────────────────────────────── */
 :root {
-  --bg:          #F4F8F9;
+  --bg:          #ffffff;
   --bg2:         #FFFFFF;
   --glass:       rgba(240,249,252,0.72);
   --glass-b:     rgba(30,120,138,0.13);
   --glass-hover: rgba(240,249,252,0.94);
-  --blue:        #0284C7;
+  --blue:        #07b6bc;
   --cyan:        #6ec6d7;
   --violet:      #5E7A82;
   --text:        #0D1F24;
