@@ -8,7 +8,7 @@ const pool = mysql.createPool({
   password: process.env.DB_PASSWORD || '',
   database: process.env.DB_NAME     || 'portfolio_db',
   waitForConnections: true,
-  connectionLimit:    2,
+  connectionLimit:    5,
   queueLimit:         0,
   enableKeepAlive:    true,
   keepAliveInitialDelay: 30000,  // 30s — prevents idle disconnect
