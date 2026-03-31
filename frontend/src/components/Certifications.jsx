@@ -67,6 +67,12 @@ const certs = [
     url:    'https://coursera.org/share/8fc9fc8d9cc1f82bda947b7228b96ddf',
   },
   {
+    title:  'Search Engine Optimization (SEO) with Squarespace',
+    issuer: 'Coursera',
+    color:  '#ec48e498',
+    url:    'https://coursera.org/share/c8d95e553adef6d7a93a603eb93029b0',
+  },
+  {
     title:  'Junior Grade Typewriting (First Class with Distinction)',
     issuer: 'Dept. of Technical Education, TN',
     color:  '#8B5CF6',
@@ -104,14 +110,17 @@ const STYLES = `
     width: 70%;
     aspect-ratio: 30 / 20;
     max-height: 1200px;
-    border-radius: 12px;
+    border-radius: 14px;
     overflow: hidden;
     cursor: pointer;
     box-shadow:
-      0 0 0 1px rgba(30,120,138,0.12),
-      0 8px 32px rgba(30,120,138,0.10);
+      0 0 0 1px rgba(34,211,238,0.1),
+      0 12px 48px rgba(0,0,0,0.5);
     background: var(--glass);
-    transition: transform 0.15s ease;
+    transition: transform 0.15s ease, box-shadow 0.3s ease;
+  }
+  .cert-slideshow:hover {
+    box-shadow: 0 0 0 1px rgba(34,211,238,0.18), 0 20px 60px rgba(0,0,0,0.6);
   }
   .cert-slideshow:active { transform: scale(0.99); }
 
@@ -156,7 +165,8 @@ const STYLES = `
   }
   .cert-progress-fill {
     height: 100%;
-    background: linear-gradient(90deg, #1e788a, #6ec6d7);
+    background: linear-gradient(90deg, #1e788a, #22d3ee);
+    box-shadow: 0 0 8px rgba(34,211,238,0.5);
     will-change: width;
   }
 
@@ -205,7 +215,7 @@ const STYLES = `
   }
   .cert-corner-arrow svg { width: 11px; height: 11px; }
   .cert-slideshow:hover .cert-corner-arrow {
-    background: rgba(30,120,138,0.6);
+    background: rgba(34,211,238,0.3);
     color: #fff;
     transform: scale(1.15);
   }
@@ -405,14 +415,14 @@ const STYLES = `
   }
   .cert-card-v2:hover .cert-glow-overlay { opacity: 1; }
   .cert-link-btn {
-    width: 24px;
-    height: 24px;
-    border-radius: 6px;
+    width: 26px;
+    height: 26px;
+    border-radius: 7px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(30,120,138,0.07);
-    border: 1px solid rgba(30,120,138,0.14);
+    background: rgba(34,211,238,0.06);
+    border: 1px solid rgba(34,211,238,0.14);
     text-decoration: none;
     flex-shrink: 0;
     opacity: 0;
@@ -426,21 +436,21 @@ const STYLES = `
   }
   .cert-card-v2:hover .cert-link-btn { opacity: 1; transform: scale(1); }
   .cert-link-btn:hover {
-    background: rgba(30,120,138,0.15) !important;
-    color: var(--blue) !important;
+    background: rgba(34,211,238,0.15) !important;
+    color: var(--cyan) !important;
   }
   .cert-link-btn svg { width: 12px; height: 12px; flex-shrink: 0; }
   .cert-title-text {
     font-size: 12px;
     font-weight: 500;
     color: var(--text);
-    line-height: 1.4;
+    line-height: 1.45;
     margin-bottom: 3px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
   }
-  .cert-meta-text { font-size: 10px; color: var(--muted); }
+  .cert-meta-text { font-size: 10px; color: rgba(100,116,139,0.8); letter-spacing: 0.02em; }
 
   @media (max-width: 768px) {
     .certs-layout { gap: 20px; }
@@ -631,14 +641,14 @@ function CertCard({ cert, delay }) {
       style={{ transitionDelay: `${delay}ms` }}
       onMouseEnter={e => {
         const el = e.currentTarget;
-        el.style.transform   = 'translateX(4px)';
-        el.style.borderColor = `${cert.color}55`;
-        el.style.boxShadow   = `0 4px 20px rgba(30,120,138,0.10), 0 0 16px ${cert.color}14`;
+        el.style.transform   = 'translateX(5px)';
+        el.style.borderColor = `${cert.color}45`;
+        el.style.boxShadow   = `0 6px 28px rgba(0,0,0,0.3), 0 0 18px ${cert.color}18`;
       }}
       onMouseLeave={e => {
         const el = e.currentTarget;
         el.style.transform   = 'translateX(0)';
-        el.style.borderColor = 'var(--glass-b)';
+        el.style.borderColor = 'rgba(255,255,255,0.07)';
         el.style.boxShadow   = '';
       }}
     >

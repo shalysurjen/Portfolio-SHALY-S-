@@ -332,26 +332,6 @@ const style = `
     position: relative;
   }
 
-  .ai-marquee-section::before,
-  .ai-marquee-section::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    width: 120px;
-    height: 100%;
-    z-index: 2;
-    pointer-events: none;
-  }
-
-  .ai-marquee-section::before {
-    left: 0;
-    background: linear-gradient(to right, #e8f0f7ad, transparent);
-  }
-
-  .ai-marquee-section::after {
-    right: 0;
-    background: linear-gradient(to left, #e8f0f776, transparent);
-  }
 
   .ai-marquee-track {
     display: flex;
@@ -368,21 +348,21 @@ const style = `
     align-items: center;
     gap: 10px;
     padding: 10px 20px;
-    margin: 0 10px;
+    margin: 0 8px;
     border-radius: 12px;
-    background: rgba(255,255,255,0.7);
-    border: 1px solid rgba(255,255,255,0.9);
-    backdrop-filter: blur(8px);
-    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.07);
+    backdrop-filter: blur(10px);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, border-color 0.2s ease;
     cursor: default;
     white-space: nowrap;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
   }
 
   .ai-logo-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
-    background: rgba(255,255,255,0.95);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 28px rgba(0,0,0,0.35);
+    background: rgba(255,255,255,0.07);
+    border-color: rgba(255,255,255,0.12);
   }
 
   .ai-logo-icon {
@@ -396,22 +376,22 @@ const style = `
   }
 
   .ai-logo-name {
-    font-family: 'Inter', 'Segoe UI', sans-serif;
+    font-family: 'DM Sans', 'Inter', sans-serif;
     font-size: 13px;
-    font-weight: 600;
-    color: #374151;
+    font-weight: 500;
+    color: #94a3b8;
     letter-spacing: 0.01em;
   }
 
   .ai-marquee-label {
     text-align: center;
-    font-family: 'Inter', 'Segoe UI', sans-serif;
-    font-size: 11px;
+    font-family: 'DM Sans', 'Inter', sans-serif;
+    font-size: 10.5px;
     font-weight: 600;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: #94a3b8;
-    margin-bottom: 14px;
+    color: rgba(34,211,238,0.5);
+    margin-bottom: 16px;
   }
 `;
 

@@ -1,6 +1,6 @@
 import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import emailjs from '@emailjs/browser';
-import useScrollReveal from '../hooks/useScrollReveal';
 import { submitContact } from '../services/api';
 
 const EMAILJS_SERVICE_ID  = 'service_2jsgywn';
@@ -18,7 +18,7 @@ const contactLinks = [
     label: 'Email',
     value: 'shalysurjen@gmail.com',
     href: 'mailto:shalysurjen@gmail.com',
-    color: '#38BDF8',
+    color: '#38bdf8',
   },
   {
     icon: (
@@ -29,7 +29,7 @@ const contactLinks = [
     label: 'GitHub',
     value: 'github.com/shalysurjen',
     href: 'https://github.com/shalysurjen',
-    color: '#818CF8',
+    color: '#818cf8',
   },
   {
     icon: (
@@ -40,17 +40,36 @@ const contactLinks = [
     label: 'LinkedIn',
     value: 'linkedin.com/in/shaly-s',
     href: 'https://linkedin.com/in/shaly-s',
-    color: '#22D3EE',
+    color: '#22d3ee',
   },
 ];
 
-const initForm = { name:'', email:'', subject:'', message:'' };
+const initForm = { name: '', email: '', subject: '', message: '' };
+
+const stagger = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.12 } },
+};
+const item = {
+  hidden:  { opacity: 0, x: -20 },
+  visible: { opacity: 1, x: 0, transition: { duration: .6, ease: [.4,0,.2,1] } },
+};
+
+function Spinner() {
+  return (
+    <motion.svg
+      width="18" height="18" viewBox="0 0 24 24" fill="none"
+      stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"
+      animate={{ rotate: 360 }}
+      transition={{ duration: .8, repeat: Infinity, ease: 'linear' }}
+      style={{ display: 'inline-block' }}
+    >
+      <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
+    </motion.svg>
+  );
+}
 
 export default function Contact() {
-  const titleRef = useScrollReveal();
-  const infoRef  = useScrollReveal();
-  const formRef  = useScrollReveal();
-
   const [form,    setForm]    = useState(initForm);
   const [loading, setLoading] = useState(false);
   const [status,  setStatus]  = useState(null);
@@ -62,20 +81,15 @@ export default function Contact() {
     e.preventDefault();
     setStatus(null);
     setLoading(true);
-
     try {
-      // 1. Save to DB (backend)
       await submitContact({
         name:    form.name.trim(),
         email:   form.email.trim(),
         subject: form.subject.trim(),
         message: form.message.trim(),
       });
-
-      // 2. Send email via EmailJS
       await emailjs.send(
-        EMAILJS_SERVICE_ID,
-        EMAILJS_TEMPLATE_ID,
+        EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID,
         {
           name:    form.name.trim(),
           email:   form.email.trim(),
@@ -85,7 +99,6 @@ export default function Contact() {
         },
         EMAILJS_PUBLIC_KEY
       );
-
       setStatus('success');
       setForm(initForm);
     } catch (err) {
@@ -97,121 +110,149 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" style={{ position:'relative', zIndex:1 }}>
-      <div style={{ maxWidth:1100, margin:'0 auto', padding:'90px 40px' }}>
-        <div ref={titleRef}>
+    <section id="contact" style={{ position: 'relative', zIndex: 1 }}>
+      <div style={{ maxWidth: 1100, margin: '0 auto', padding: '100px 40px' }}>
+
+        {/* Title */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-60px' }}
+          transition={{ duration: .7 }}
+        >
           <div className="section-label">Get In Touch</div>
-          <h2 className="grad-text" style={{ fontFamily:'Syne,sans-serif', fontSize:'clamp(32px,4vw,46px)', fontWeight:800, letterSpacing:'-1px', marginBottom:8 }}>
+          <h2 className="grad-text" style={{ fontFamily: 'Syne,sans-serif', fontSize: 'clamp(32px,4vw,48px)', fontWeight: 800, letterSpacing: '-1.5px', marginBottom: 8 }}>
             Let's Build<br />Something Together
           </h2>
           <div className="divider" />
-        </div>
+        </motion.div>
 
-        <div style={{ display:'grid', gridTemplateColumns:'1fr 1.35fr', gap:52, alignItems:'start' }} className="contact-grid">
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.4fr', gap: 52, alignItems: 'start' }} className="contact-grid">
 
-          {/* Left — info */}
-          <div ref={infoRef}>
-            <p style={{ color:'#94A3B8', lineHeight:1.8, marginBottom:28, fontSize:15 }}>
+          {/* Left — contact info */}
+          <motion.div
+            variants={stagger}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-60px' }}
+          >
+            <motion.p variants={item} style={{ color: 'rgba(148,163,184,0.85)', lineHeight: 1.85, marginBottom: 32, fontSize: 15 }}>
               I'm currently looking for internship and full-time opportunities.
               Whether you have a project, a question, or just want to say hello —
               my inbox is always open!
-            </p>
-            <div style={{ display:'flex', flexDirection:'column', gap:14 }}>
-              {contactLinks.map(c => (
-                <a key={c.label} href={c.href} target="_blank" rel="noreferrer" style={{
-                  display:'flex', alignItems:'center', gap:16,
-                  padding:'14px 18px', borderRadius:12, textDecoration:'none',
-                  background:'var(--glass)', border:'1px solid var(--glass-b)',
-                  color:'var(--text)', transition:'all .2s',
-                }}
-                  onMouseEnter={e => { e.currentTarget.style.borderColor=`${c.color}50`; e.currentTarget.style.transform='translateX(4px)'; }}
-                  onMouseLeave={e => { e.currentTarget.style.borderColor='var(--glass-b)'; e.currentTarget.style.transform='translateX(0)'; }}
+            </motion.p>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
+              {contactLinks.map((c, i) => (
+                <motion.a
+                  key={c.label}
+                  variants={item}
+                  href={c.href} target="_blank" rel="noreferrer"
+                  whileHover={{ x: 6, boxShadow: `0 8px 32px ${c.color}18`, borderColor: `${c.color}50` }}
+                  style={{
+                    display: 'flex', alignItems: 'center', gap: 16,
+                    padding: '14px 18px', borderRadius: 14, textDecoration: 'none',
+                    background: 'rgba(255,255,255,0.03)',
+                    border: '1px solid rgba(255,255,255,0.07)',
+                    color: 'var(--text)', transition: 'all .25s',
+                    backdropFilter: 'blur(10px)',
+                  }}
                 >
-                  <div style={{
-                    width:40, height:40, borderRadius:10, flexShrink:0,
-                    background:`${c.color}14`, border:`1px solid ${c.color}30`,
-                    display:'flex', alignItems:'center', justifyContent:'center', color:c.color,
-                  }}>{c.icon}</div>
+                  <motion.div
+                    whileHover={{ scale: 1.15, rotate: 8 }}
+                    style={{
+                      width: 40, height: 40, borderRadius: 10, flexShrink: 0,
+                      background: `${c.color}12`, border: `1px solid ${c.color}28`,
+                      display: 'flex', alignItems: 'center', justifyContent: 'center', color: c.color,
+                    }}
+                  >
+                    {c.icon}
+                  </motion.div>
                   <div>
-                    <div style={{ fontSize:11, color:'var(--muted)', marginBottom:2, letterSpacing:'.5px', textTransform:'uppercase' }}>{c.label}</div>
-                    <div style={{ fontSize:14, color:'var(--text)' }}>{c.value}</div>
+                    <div style={{ fontSize: 10, color: 'var(--muted)', marginBottom: 2, letterSpacing: '.5px', textTransform: 'uppercase' }}>{c.label}</div>
+                    <div style={{ fontSize: 14, color: 'var(--text)' }}>{c.value}</div>
                   </div>
-                </a>
+                </motion.a>
               ))}
             </div>
-          </div>
+          </motion.div>
 
           {/* Right — form */}
-          <div ref={formRef} className="glass-card" style={{ padding:32 }}>
-            <h3 style={{ fontFamily:'Syne,sans-serif', fontSize:20, fontWeight:700, color:'var(--text)', marginBottom:24 }}>
+          <motion.div
+            initial={{ opacity: 0, y: 32 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-60px' }}
+            transition={{ duration: .7, delay: .15 }}
+            className="glass-card"
+            style={{ padding: 36 }}
+          >
+            <h3 style={{ fontFamily: 'Syne,sans-serif', fontSize: 20, fontWeight: 700, color: 'var(--text)', marginBottom: 28 }}>
               Send a Message
             </h3>
-            <form onSubmit={handleSubmit} style={{ display:'flex', flexDirection:'column', gap:16 }}>
-              <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:14 }} className="form-row">
+            <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 18 }}>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 14 }} className="form-row">
                 <div>
-                  <label style={{ fontSize:11, color:'var(--muted)', letterSpacing:'.5px', display:'block', marginBottom:6 }}>YOUR NAME *</label>
-                  <input
-                    className="form-input"
-                    name="name" value={form.name} onChange={handleChange}
-                    placeholder="Jane Smith" required minLength={2} maxLength={100}
-                  />
+                  <label style={{ fontSize: 10, color: 'var(--muted)', letterSpacing: '.8px', display: 'block', marginBottom: 8, textTransform: 'uppercase' }}>Your Name *</label>
+                  <input className="form-input" name="name" value={form.name} onChange={handleChange} placeholder="Jane Smith" required minLength={2} maxLength={100} />
                 </div>
                 <div>
-                  <label style={{ fontSize:11, color:'var(--muted)', letterSpacing:'.5px', display:'block', marginBottom:6 }}>EMAIL ADDRESS *</label>
-                  <input
-                    className="form-input"
-                    type="email" name="email" value={form.email} onChange={handleChange}
-                    placeholder="jane@example.com" required
-                  />
+                  <label style={{ fontSize: 10, color: 'var(--muted)', letterSpacing: '.8px', display: 'block', marginBottom: 8, textTransform: 'uppercase' }}>Email Address *</label>
+                  <input className="form-input" type="email" name="email" value={form.email} onChange={handleChange} placeholder="jane@example.com" required />
                 </div>
               </div>
 
               <div>
-                <label style={{ fontSize:11, color:'var(--muted)', letterSpacing:'.5px', display:'block', marginBottom:6 }}>SUBJECT</label>
-                <input
-                  className="form-input"
-                  name="subject" value={form.subject} onChange={handleChange}
-                  placeholder="Project Collaboration / Hiring"
-                />
+                <label style={{ fontSize: 10, color: 'var(--muted)', letterSpacing: '.8px', display: 'block', marginBottom: 8, textTransform: 'uppercase' }}>Subject</label>
+                <input className="form-input" name="subject" value={form.subject} onChange={handleChange} placeholder="Project Collaboration / Hiring" />
               </div>
 
               <div>
-                <label style={{ fontSize:11, color:'var(--muted)', letterSpacing:'.5px', display:'block', marginBottom:6 }}>MESSAGE *</label>
-                <textarea
-                  className="form-textarea"
-                  name="message" value={form.message} onChange={handleChange}
-                  placeholder="Tell me about your project or opportunity..."
-                  required minLength={10} rows={5}
-                />
+                <label style={{ fontSize: 10, color: 'var(--muted)', letterSpacing: '.8px', display: 'block', marginBottom: 8, textTransform: 'uppercase' }}>Message *</label>
+                <textarea className="form-textarea" name="message" value={form.message} onChange={handleChange} placeholder="Tell me about your project or opportunity..." required minLength={10} rows={5} />
               </div>
 
-              {status === 'success' && (
-                <div style={{
-                  padding:14, borderRadius:10, fontSize:14, textAlign:'center',
-                  background:'rgba(34,211,238,.08)', border:'1px solid rgba(34,211,238,.25)', color:'var(--cyan)',
-                }}>
-                  ✓ Message sent! I'll get back to you soon. 🚀
-                </div>
-              )}
-              {status === 'error' && (
-                <div style={{
-                  padding:14, borderRadius:10, fontSize:14, textAlign:'center',
-                  background:'rgba(239,68,68,.08)', border:'1px solid rgba(239,68,68,.25)', color:'#F87171',
-                }}>
-                  ⚠ {errMsg}
-                </div>
-              )}
+              {/* Status messages */}
+              <AnimatePresence>
+                {status === 'success' && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -8, scale: .97 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0 }}
+                    style={{ padding: 14, borderRadius: 10, fontSize: 14, textAlign: 'center', background: 'rgba(34,211,238,0.07)', border: '1px solid rgba(34,211,238,0.25)', color: 'var(--cyan)' }}
+                  >
+                    ✓ Message sent! I'll get back to you soon. 🚀
+                  </motion.div>
+                )}
+                {status === 'error' && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -8, scale: .97 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0 }}
+                    style={{ padding: 14, borderRadius: 10, fontSize: 14, textAlign: 'center', background: 'rgba(239,68,68,0.07)', border: '1px solid rgba(239,68,68,0.25)', color: '#f87171' }}
+                  >
+                    ⚠ {errMsg}
+                  </motion.div>
+                )}
+              </AnimatePresence>
 
-              <button
+              <motion.button
                 type="submit"
                 disabled={loading}
                 className="btn-primary"
-                style={{ width:'100%', opacity: loading ? .7 : 1, cursor: loading ? 'wait' : 'pointer' }}
+                whileHover={!loading ? { scale: 1.02 } : {}}
+                whileTap={!loading ? { scale: 0.98 } : {}}
+                style={{ width: '100%', opacity: loading ? .8 : 1, cursor: loading ? 'wait' : 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10, padding: '14px 32px' }}
               >
-                <span>{loading ? 'Sending…' : 'Send Message →'}</span>
-              </button>
+                {loading ? (
+                  <>
+                    <Spinner />
+                    <span>Sending…</span>
+                  </>
+                ) : (
+                  <span>Send Message →</span>
+                )}
+              </motion.button>
             </form>
-          </div>
+          </motion.div>
         </div>
       </div>
       <style>{`@media(max-width:768px){ .contact-grid{ grid-template-columns:1fr !important; } .form-row{ grid-template-columns:1fr !important; } }`}</style>
