@@ -2,9 +2,9 @@ import { motion } from 'framer-motion';
 import Aimarquee from './Aimarquee';
 
 const stats = [
-  { value: '7.98', label: 'CGPA' },
+  { value: '7.99', label: 'CGPA' },
   { value: '4+',   label: 'Internships' },
-  { value: '10+',  label: 'Certifications' },
+  { value: '15+',  label: 'Certifications' },
   { value: '2026', label: 'Graduating' },
 ];
 

@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import useScrollReveal from '../hooks/useScrollReveal';
 import shoppingbot from '../assets/projects/shoppingbot.mp4';
-import instagramwireframe from '../assets/projects/InstaWireFrame.mp4';
+// import instagramwireframe from '../assets/projects/InstaWireFrame.mp4';
 import junkfile from '../assets/projects/junkfile.jpg';
 
 const projects = [
@@ -29,18 +29,18 @@ const projects = [
     media: shoppingbot,
     mediaType: 'video',
   },
-  {
-    num: '03',
-    tag: 'UI/UX · Figma Wireframe',
-    title: 'Instagram Wireframe',
-    desc: 'A complete high-fidelity Instagram wireframe built in Figma, covering Home, Profile, Search, and Post pages. Demonstrates deep knowledge of user flows, component design, and responsive layout principles.',
-    stack: ['Figma','Responsive Design','Wireframing','Prototyping'],
-    figma: 'https://www.figma.com/design/HDdlOqOkG0JYVweM5r6rmt/Instagram-Wireframe?node-id=0-1',
-    live: 'https://www.linkedin.com/posts/shaly-s-528308255_uiuxdesign-figma-technohacks-activity-7308208884744081408-Nlyx',
-    accent: '#22d3ee',
-    media: instagramwireframe,
-    mediaType: 'video',
-  },
+  // {
+  //   num: '03',
+  //   tag: 'UI/UX · Figma Wireframe',
+  //   title: 'Instagram Wireframe',
+  //   desc: 'A complete high-fidelity Instagram wireframe built in Figma, covering Home, Profile, Search, and Post pages. Demonstrates deep knowledge of user flows, component design, and responsive layout principles.',
+  //   stack: ['Figma','Responsive Design','Wireframing','Prototyping'],
+  //   figma: 'https://www.figma.com/design/HDdlOqOkG0JYVweM5r6rmt/Instagram-Wireframe?node-id=0-1',
+  //   live: 'https://www.linkedin.com/posts/shaly-s-528308255_uiuxdesign-figma-technohacks-activity-7308208884744081408-Nlyx',
+  //   accent: '#22d3ee',
+  //   media: instagramwireframe,
+  //   mediaType: 'video',
+  // },
 ];
 
 function MediaBox({ project }) {
