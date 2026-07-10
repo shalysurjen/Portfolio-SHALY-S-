@@ -46,7 +46,7 @@ function SkillCard({ icon, cat, title, color, tags, delay }) {
     <div ref={ref} className="glass-card" style={{ padding:28, transitionDelay:`${delay}ms` }}>
       <div style={{ fontSize:30, marginBottom:12 }}>{icon}</div>
       <div style={{ fontSize:11, letterSpacing:'2px', textTransform:'uppercase', color:'var(--blue)', marginBottom:8, fontWeight:500 }}>{cat}</div>
-      <div style={{ fontFamily:'Syne,sans-serif', fontSize:20, fontWeight:700, color:'var(--text)', marginBottom:20 }}>{title}</div>
+      <div style={{ fontFamily:'Space Grotesk, sans-serif', fontSize:20, fontWeight:700, color:'var(--text)', marginBottom:20 }}>{title}</div>
       <div style={{ display:'flex', flexWrap:'wrap', gap:8 }}>
         {tags.map(t => (
           <span key={t} style={{ padding:'5px 12px', borderRadius:6, fontSize:12, ...tagStyle[color] }}>{t}</span>
@@ -77,7 +77,7 @@ export default function Skills() {
 
         <div ref={titleRef}>
           <div className="section-label">Expertise</div>
-          <h2 className="grad-text" style={{ fontFamily:'Syne,sans-serif', fontSize:'clamp(32px,4vw,46px)', fontWeight:800, letterSpacing:'-1px', marginBottom:8 }}>
+          <h2 className="grad-text" style={{ fontFamily:'Space Grotesk, sans-serif', fontSize:'clamp(32px,4vw,46px)', fontWeight:800, letterSpacing:'-1px', marginBottom:8 }}>
             Skills & Technologies
           </h2>
           <div className="divider" />
@@ -93,7 +93,7 @@ export default function Skills() {
 
         {/* Skill bars */}
         <div ref={barsRef} style={{ maxWidth:1000 }}>
-          <div style={{ fontFamily:'Syne,sans-serif', fontSize:16, fontWeight:700, color:'var(--text)', marginBottom:24 }}>
+          <div style={{ fontFamily:'Space Grotesk, sans-serif', fontSize:16, fontWeight:700, color:'var(--text)', marginBottom:24 }}>
             Proficiency Overview
           </div>
           <div style={{ display:'flex', flexDirection:'column', gap:20 }}>

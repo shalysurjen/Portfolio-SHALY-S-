@@ -7,6 +7,18 @@ import junkfile from '../assets/projects/junkfile.jpg';
 const projects = [
   {
     num: '01',
+    tag: 'Java · Spring Boot · React',
+    title: 'WeHRM — HR Management System',
+    desc: 'Full-stack Human Resource Management System built at Wenxt Technologies to manage employee appraisals, leave, attendance, and biometric integration. Delivered production-ready appraisal and leave modules currently used across the organization, with attendance tracking and mobile deployment in progress.',
+    stack: ['Java','Spring Boot','React.js','TypeScript','MySQL','Tailwind CSS','Keycloak'],
+    github: null,
+    live: null,
+    accent: '#34d399',
+    media: null,
+    mediaType: null,
+  },
+  {
+    num: '02',
     tag: 'Python · Automation',
     title: 'Junk File Organizer',
     desc: 'Automatically organizes desktop files into categorized folders (Images, Videos, Documents, Audio, PDFs, Scripts) based on file extensions. Enhances workspace productivity through smart file-system automation.',
@@ -18,7 +30,7 @@ const projects = [
     mediaType: 'image',
   },
   {
-    num: '02',
+    num: '03',
     tag: 'UiPath · RPA',
     title: 'Shopping Helper Bot',
     desc: 'An RPA bot that searches iPhone products on Flipkart, extracts product details, filters results by user-defined price range, stores data in Excel, and automatically emails the filtered results.',
@@ -117,7 +129,7 @@ function ProjectCard({ project, index }) {
       {/* Header */}
       <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: 12 }}>
         <span style={{
-          fontFamily: 'Syne,sans-serif', fontSize: 52, fontWeight: 800, lineHeight: 1,
+          fontFamily: 'Space Grotesk, sans-serif', fontSize: 52, fontWeight: 800, lineHeight: 1,
           background: `linear-gradient(135deg, ${project.accent}, transparent)`,
           WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', opacity: .28,
         }}>{project.num}</span>
@@ -128,7 +140,7 @@ function ProjectCard({ project, index }) {
         }}>{project.tag}</span>
       </div>
 
-      <h3 style={{ fontFamily: 'Syne,sans-serif', fontSize: 22, fontWeight: 700, color: 'var(--text)', marginBottom: 12, lineHeight: 1.2 }}>
+      <h3 style={{ fontFamily: 'Space Grotesk, sans-serif', fontSize: 22, fontWeight: 700, color: 'var(--text)', marginBottom: 12, lineHeight: 1.2 }}>
         {project.title}
       </h3>
       <p style={{ color: 'var(--muted)', fontSize: 13.5, lineHeight: 1.8, margin: '0 0 20px', flex: 1 }}>
@@ -189,7 +201,7 @@ function ProjectCard({ project, index }) {
     <motion.div
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-60px' }}
+      viewport={{ once: false, margin: '-60px' }}
       transition={{ duration: .7, ease: [.4,0,.2,1] }}
       whileHover={{
         y: -6,
@@ -228,11 +240,11 @@ export default function Projects() {
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-60px' }}
+          viewport={{ once: false, margin: '-60px' }}
           transition={{ duration: .7 }}
         >
           <div className="section-label">Work</div>
-          <h2 className="grad-text" style={{ fontFamily: 'Syne,sans-serif', fontSize: 'clamp(32px,4vw,48px)', fontWeight: 800, letterSpacing: '-1.5px', marginBottom: 8 }}>
+          <h2 className="grad-text" style={{ fontFamily: 'Space Grotesk, sans-serif', fontSize: 'clamp(32px,4vw,48px)', fontWeight: 800, letterSpacing: '-1.5px', marginBottom: 8 }}>
             Featured Projects
           </h2>
           <div className="divider" />

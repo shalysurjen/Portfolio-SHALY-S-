@@ -90,6 +90,18 @@ const certs = [
     color:  '#e6ec48ff',
     url:    'https://coursera.org/share/254ffa2dbb2a642c8b8b55750a75047f',
   },
+  {
+    title:  'Java Full Stack — TalentNext Digital Skills Readiness Program',
+    issuer: 'Wipro',
+    color:  '#34D399',
+    url:    '',
+  },
+  {
+    title:  'Business Analysis & Process Management',
+    issuer: 'Coursera Project Network',
+    color:  '#F472B6',
+    url:    '',
+  },
 ];
 
 const STYLES = `

@@ -34,7 +34,7 @@ export default function LoadingScreen() {
         animate={{ opacity: 1, scale: 1, y: 0 }}
         transition={{ duration: 0.55, ease: [0.34, 1.56, 0.64, 1] }}
         style={{
-          fontFamily: 'Syne, sans-serif', fontSize: 52, fontWeight: 800,
+          fontFamily: 'Space Grotesk, sans-serif', fontSize: 52, fontWeight: 800,
           letterSpacing: '-3px', lineHeight: 1,
           background: isDark
             ? 'linear-gradient(135deg, #22d3ee 0%, #818cf8 100%)'

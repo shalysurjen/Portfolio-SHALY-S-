@@ -117,11 +117,11 @@ export default function Contact() {
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-60px' }}
+          viewport={{ once: false, margin: '-60px' }}
           transition={{ duration: .7 }}
         >
           <div className="section-label">Get In Touch</div>
-          <h2 className="grad-text" style={{ fontFamily: 'Syne,sans-serif', fontSize: 'clamp(32px,4vw,48px)', fontWeight: 800, letterSpacing: '-1.5px', marginBottom: 8 }}>
+          <h2 className="grad-text" style={{ fontFamily: 'Space Grotesk, sans-serif', fontSize: 'clamp(32px,4vw,48px)', fontWeight: 800, letterSpacing: '-1.5px', marginBottom: 8 }}>
             Let's Build<br />Something Together
           </h2>
           <div className="divider" />
@@ -134,7 +134,7 @@ export default function Contact() {
             variants={stagger}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, margin: '-60px' }}
+            viewport={{ once: false, margin: '-60px' }}
           >
             <motion.p variants={item} style={{ color: 'rgba(148,163,184,0.85)', lineHeight: 1.85, marginBottom: 32, fontSize: 15 }}>
               I'm currently looking for internship and full-time opportunities.
@@ -180,12 +180,12 @@ export default function Contact() {
           <motion.div
             initial={{ opacity: 0, y: 32 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-60px' }}
+            viewport={{ once: false, margin: '-60px' }}
             transition={{ duration: .7, delay: .15 }}
             className="glass-card"
             style={{ padding: 36 }}
           >
-            <h3 style={{ fontFamily: 'Syne,sans-serif', fontSize: 20, fontWeight: 700, color: 'var(--text)', marginBottom: 28 }}>
+            <h3 style={{ fontFamily: 'Space Grotesk, sans-serif', fontSize: 20, fontWeight: 700, color: 'var(--text)', marginBottom: 28 }}>
               Send a Message
             </h3>
             <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 18 }}>

@@ -31,7 +31,7 @@ function SSLogo({ isDark }) {
     : 'linear-gradient(135deg, #0891b2 0%, #7c3aed 100%)';
   return (
     <span style={{
-      fontFamily: 'Syne, sans-serif', fontSize: 22, fontWeight: 800,
+      fontFamily: 'Space Grotesk, sans-serif', fontSize: 22, fontWeight: 800,
       letterSpacing: '-1.5px', lineHeight: 1,
       // background: grad,
       WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent',

@@ -36,7 +36,7 @@ export default function Footer() {
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
+          viewport={{ once: false }}
           transition={{ duration: 0.5, delay: 0.2 }}
           style={{ textAlign: 'center', display: 'flex', flexDirection: 'column', gap: 6 }}
         >

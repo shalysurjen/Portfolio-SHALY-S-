@@ -2,9 +2,9 @@ import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const ROLES = [
-  'Full Stack Developer',
-  'UI/UX Designer',
-  'React Enthusiast',
+  'Java Full Stack Developer',
+  'Frontend Developer',
+  'UI Developer',
   'Problem Solver',
 ];
 
@@ -31,7 +31,7 @@ function TypingText({ texts }) {
 
   return (
     <span>
-      <span className="grad-text-aurora" style={{ fontFamily: 'Syne,sans-serif', fontWeight: 700 }}>
+      <span className="grad-text-aurora" style={{ fontFamily: 'Space Grotesk, sans-serif', fontWeight: 700 }}>
         {shown}
       </span>
       <span style={{
@@ -151,7 +151,7 @@ export default function Hero() {
           initial="hidden"
           animate="visible"
           style={{
-            fontFamily: 'Syne,sans-serif',
+            fontFamily: 'Space Grotesk, sans-serif',
             fontSize: 'clamp(58px,9.5vw,116px)',
             fontWeight: 800, lineHeight: 1.0, letterSpacing: '-4px',
             marginBottom: 24, perspective: 900,
@@ -178,8 +178,8 @@ export default function Hero() {
           transition={{ duration: 0.6, delay: 0.78 }}
           style={{ fontSize: 15.5, color: 'var(--text-muted)', lineHeight: 1.9, maxWidth: 520, margin: '0 auto 52px' }}
         >
-          Innovative engineering student passionate about building clean, scalable, and
-          user-focused digital products. Turning ideas into beautiful, functional interfaces.
+          Java Full Stack Developer building responsive, scalable web applications with
+          Java, Spring Boot, React.js, and MySQL — turning ideas into clean, production-ready software.
         </motion.p>
 
         {/* ── CTA Buttons ── */}

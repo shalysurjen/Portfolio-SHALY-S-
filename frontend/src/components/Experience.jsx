@@ -18,6 +18,16 @@ import analysisDash2  from '../assets/media/inspireanalysis2.jpg';
 ───────────────────────────────────────────────────────────── */
 const experiences = [
   {
+    role:     'Full Stack Development Intern',
+    company:  'Wenxt Technologies',
+    type:     'Current',
+    duration: 'Jan 2026 · Present',
+    desc:     'Contributing to full-stack web application development using React.js, Java, Spring Boot, and MySQL to build responsive, scalable solutions. Designing user-centric UI/UX layouts, improving usability, and applying on-page SEO best practices. Preparing a Keycloak authentication proof-of-concept covering OAuth2 fundamentals and JWT-based setup for secure application access.',
+    tags:     ['Java', 'Spring Boot', 'React.js', 'MySQL', 'Keycloak', 'JWT', 'REST API'],
+    color:    '#34d399',
+    media: [],
+  },
+  {
     role:     'Web Development Intern',
     company:  'TechnoHacks',
     type:     'Remote',
@@ -441,7 +451,7 @@ function TimelineItem({ exp, delay }) {
     <motion.div
       initial={{ opacity: 0, x: -18 }}
       whileInView={{ opacity: 1, x: 0 }}
-      viewport={{ once: true, margin: '-40px' }}
+      viewport={{ once: false, margin: '-40px' }}
       transition={{ duration: 0.6, delay, ease: [0.4, 0, 0.2, 1] }}
       style={{ position: 'relative', marginBottom: 36, paddingLeft: 28 }}
     >
@@ -449,7 +459,7 @@ function TimelineItem({ exp, delay }) {
       <motion.div
         initial={{ scale: 0 }}
         whileInView={{ scale: 1 }}
-        viewport={{ once: true }}
+        viewport={{ once: false }}
         transition={{ duration: 0.4, delay: delay + 0.1, type: 'spring', stiffness: 300 }}
         style={{
           position: 'absolute', left: -5, top: 16,
@@ -464,7 +474,7 @@ function TimelineItem({ exp, delay }) {
 
         {/* 1. Role + badge */}
         <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', flexWrap: 'wrap', gap: 8, marginBottom: 4 }}>
-          <h3 style={{ fontFamily: 'Syne, sans-serif', fontSize: 17, fontWeight: 700, color: 'var(--text)', lineHeight: 1.3 }}>
+          <h3 style={{ fontFamily: 'Space Grotesk, sans-serif', fontSize: 17, fontWeight: 700, color: 'var(--text)', lineHeight: 1.3 }}>
             {exp.role}
           </h3>
           <span style={{
@@ -504,7 +514,7 @@ function TimelineItem({ exp, delay }) {
               variants={tagVar}
               initial="hidden"
               whileInView="show"
-              viewport={{ once: true }}
+              viewport={{ once: false }}
               style={{
                 padding: '3px 10px', borderRadius: 5, fontSize: 11,
                 background: `${exp.color}10`, border: `1px solid ${exp.color}28`,
@@ -532,19 +542,19 @@ export default function Experience() {
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-60px' }}
+          viewport={{ once: false, margin: '-60px' }}
           transition={{ duration: 0.7 }}
         >
           <div className="section-label">Journey</div>
           <h2
             className="grad-text"
-            style={{ fontFamily: 'Syne, sans-serif', fontSize: 'clamp(32px,4vw,48px)', fontWeight: 800, letterSpacing: '-1.5px', marginBottom: 8 }}
+            style={{ fontFamily: 'Space Grotesk, sans-serif', fontSize: 'clamp(32px,4vw,48px)', fontWeight: 800, letterSpacing: '-1.5px', marginBottom: 8 }}
           >
             Experience
           </h2>
           <div className="divider" />
           <p style={{ color: 'var(--muted)', maxWidth: 500, lineHeight: 1.7, marginBottom: 56 }}>
-            Real-world exposure across web development, UI/UX, data analytics, and industrial environments.
+            Real-world exposure across full-stack development, UI/UX, data analytics, and industrial environments.
           </p>
         </motion.div>
 
@@ -554,13 +564,13 @@ export default function Experience() {
         >
           <div style={{ position: 'relative', paddingLeft: 28 }}>
             <div className="timeline-line" />
-            {experiences.slice(0, 2).map((e, i) => (
+            {experiences.slice(0, 3).map((e, i) => (
               <TimelineItem key={e.role + e.company} exp={e} delay={i * 0.12} />
             ))}
           </div>
           <div style={{ position: 'relative', paddingLeft: 28 }}>
             <div className="timeline-line" />
-            {experiences.slice(2).map((e, i) => (
+            {experiences.slice(3).map((e, i) => (
               <TimelineItem key={e.role + e.company} exp={e} delay={i * 0.12 + 0.06} />
             ))}
           </div>

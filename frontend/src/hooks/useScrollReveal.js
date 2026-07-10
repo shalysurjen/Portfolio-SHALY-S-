@@ -12,7 +12,9 @@ export default function useScrollReveal(options = {}) {
         if (entry.isIntersecting) {
           el.style.opacity    = '1';
           el.style.transform  = 'translateY(0)';
-          observer.unobserve(el);
+        } else {
+          el.style.opacity   = '0';
+          el.style.transform = 'translateY(32px)';
         }
       },
       { threshold: 0.1, rootMargin: '0px 0px -40px 0px', ...options }
