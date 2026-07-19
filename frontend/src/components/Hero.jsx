@@ -207,55 +207,100 @@ export default function Hero() {
           </motion.button>
         </motion.div>
 
-        {/* ── Floating glyph particles ── */}
+        {/* ── Floating particles: dots + glyphs + rings ── */}
         {[
-          ['#22d3ee',  '9%',  '3%',   true,  false, 3.1, 0.0 ],
-          ['#818cf8', '17%', '11%',  false, false, 4.2, 0.4 ],
-          ['#f472b6', '11%', '89%',  false,  true, 3.7, 0.7 ],
-          ['#34d399', '23%', '93%',  false,  true, 5.0, 0.2 ],
-          ['#fbbf24', '36%',  '5%',  false, false, 3.9, 1.0 ],
-          ['#818cf8', '46%', '95%',  false,  true, 5.1, 0.5 ],
-          ['#f472b6', '57%',  '2%',  false, false, 3.5, 0.8 ],
-          ['#22d3ee', '66%', '91%',  false,  true, 4.3, 0.3 ],
-          ['#34d399', '73%',  '7%',  false, false, 4.7, 1.1 ],
-          ['#fbbf24', '79%', '86%',  false,  true, 3.8, 0.6 ],
-          ['#38bdf8', '31%', '96%',  false,  true, 5.3, 0.9 ],
-          ['#a78bfa', '49%',  '1%',  false, false, 4.0, 0.3 ],
-          ['#fb923c', '14%', '76%',   true,  true, 4.5, 1.3 ],
-          ['#22d3ee', '83%', '31%',  false, false, 3.4, 0.7 ],
-          
-        ].map(([color, top, pos, isGlyph, isRight, dur, delay], i) => (
-          isGlyph ? (
+          // [color, top, left, type:'dot'|'glyph'|'ring', size, dur, delay, yRange]
+          // DOTS
+          ['#22d3ee',  '4%',  '5%',  'dot',   3,   3.1, 0.0, 14],
+          ['#818cf8',  '8%',  '18%', 'dot',   4,   4.2, 0.4, 18],
+          ['#f472b6',  '6%',  '78%', 'dot',   2.5, 3.7, 0.7, 12],
+          ['#34d399',  '3%',  '90%', 'dot',   3,   5.0, 0.2, 20],
+          ['#fbbf24', '15%',  '3%',  'dot',   4.5, 3.9, 1.0, 16],
+          ['#818cf8', '18%', '95%',  'dot',   3,   5.1, 0.5, 14],
+          ['#f472b6', '22%',  '8%',  'dot',   2,   3.5, 0.8, 10],
+          ['#22d3ee', '25%', '88%',  'dot',   5,   4.3, 0.3, 22],
+          ['#34d399', '30%',  '2%',  'dot',   3.5, 4.7, 1.1, 18],
+          ['#fbbf24', '33%', '92%',  'dot',   2.5, 3.8, 0.6, 14],
+          ['#38bdf8', '38%', '97%',  'dot',   4,   5.3, 0.9, 20],
+          ['#a78bfa', '42%',  '1%',  'dot',   3,   4.0, 0.3, 16],
+          ['#fb923c', '47%', '85%',  'dot',   2,   4.5, 1.3, 12],
+          ['#22d3ee', '52%', '12%',  'dot',   4.5, 3.4, 0.7, 18],
+          ['#f472b6', '57%',  '4%',  'dot',   3,   4.8, 0.2, 14],
+          ['#34d399', '62%', '93%',  'dot',   2.5, 3.6, 0.9, 16],
+          ['#818cf8', '67%',  '6%',  'dot',   5,   5.2, 0.4, 22],
+          ['#fbbf24', '72%', '80%',  'dot',   3,   4.1, 1.2, 14],
+          ['#22d3ee', '77%',  '9%',  'dot',   4,   3.9, 0.6, 18],
+          ['#a78bfa', '82%', '87%',  'dot',   2.5, 4.6, 0.1, 12],
+          ['#38bdf8', '87%',  '3%',  'dot',   3.5, 3.3, 0.8, 16],
+          ['#fb923c', '92%', '94%',  'dot',   4,   5.0, 0.3, 20],
+          ['#f472b6', '12%', '45%',  'dot',   2,   4.4, 0.7, 10],
+          ['#34d399', '48%', '55%',  'dot',   3,   3.7, 1.0, 14],
+          ['#22d3ee', '68%', '38%',  'dot',   2.5, 5.1, 0.5, 12],
+          ['#818cf8', '85%', '62%',  'dot',   4,   4.3, 0.2, 18],
+          ['#fbbf24', '10%', '60%',  'dot',   3,   3.5, 0.9, 14],
+          ['#fb923c', '28%', '32%',  'dot',   2,   4.9, 0.4, 10],
+          // GLYPHS
+          ['#22d3ee',  '5%', '28%',  'glyph', 12,  4.2, 0.0, 14],
+          ['#818cf8', '20%', '70%',  'glyph', 10,  3.8, 0.6, 12],
+          ['#f472b6', '40%', '15%',  'glyph', 14,  5.0, 0.9, 16],
+          ['#34d399', '60%', '82%',  'glyph', 11,  4.5, 0.3, 14],
+          ['#fbbf24', '78%', '22%',  'glyph', 13,  3.6, 1.1, 12],
+          ['#a78bfa', '14%', '52%',  'glyph', 10,  4.8, 0.7, 18],
+          ['#fb923c', '55%', '40%',  'glyph', 12,  4.0, 0.4, 14],
+          ['#38bdf8', '90%', '58%',  'glyph', 14,  3.9, 0.8, 16],
+          ['#22d3ee', '32%', '48%',  'glyph', 11,  5.3, 0.2, 12],
+          // RINGS
+          ['#22d3ee', '10%', '35%',  'ring',  18,  6.0, 0.2, 20],
+          ['#818cf8', '35%', '72%',  'ring',  22,  7.2, 0.8, 24],
+          ['#f472b6', '58%', '18%',  'ring',  16,  5.5, 0.4, 18],
+          ['#34d399', '75%', '60%',  'ring',  20,  6.8, 1.0, 22],
+          ['#fbbf24', '20%', '88%',  'ring',  14,  5.8, 0.6, 16],
+          ['#a78bfa', '45%',  '8%',  'ring',  24,  7.5, 0.3, 26],
+          ['#38bdf8', '88%', '30%',  'ring',  18,  6.2, 0.9, 20],
+          ['#fb923c', '50%', '50%',  'ring',  26,  8.0, 0.5, 28],
+        ].map(([color, top, left, type, size, dur, delay, yRange], i) => {
+          if (type === 'glyph') return (
             <motion.div
               key={i}
               style={{
-                position: 'absolute', fontSize: 12, color,
-                opacity: 0.4, top, [isRight ? 'right' : 'left']: pos,
-                pointerEvents: 'none', fontFamily: 'monospace',
-                textShadow: `0 0 12px ${color}`,
+                position: 'absolute', fontSize: size, color, opacity: 0.45,
+                top, left, pointerEvents: 'none', fontFamily: 'monospace',
+                textShadow: `0 0 14px ${color}90`,
               }}
-              animate={{ y: [0, -16, 0], opacity: [0.3, 0.7, 0.3], rotate: [0, 15, 0] }}
+              animate={{ y: [0, -yRange, 0], opacity: [0.25, 0.65, 0.25], rotate: [0, 20, 0] }}
               transition={{ duration: dur, repeat: Infinity, delay, ease: 'easeInOut' }}
             >
               {GLYPHS[i % GLYPHS.length]}
             </motion.div>
-          ) : (
+          );
+          if (type === 'ring') return (
             <motion.div
               key={i}
               style={{
-                position: 'absolute',
-                width: 3.5, height: 3.5, borderRadius: '50%',
-                background: color,
-                boxShadow: `0 0 10px ${color}`,
-                opacity: 0.65, top,
-                [isRight ? 'right' : 'left']: pos,
+                position: 'absolute', top, left,
+                width: size, height: size, borderRadius: '50%',
+                border: `1.5px solid ${color}55`,
+                boxShadow: `0 0 10px ${color}25, inset 0 0 6px ${color}15`,
                 pointerEvents: 'none',
               }}
-              animate={{ y: [0, -18, 0], opacity: [0.4, 1, 0.4], scale: [1, 1.4, 1] }}
+              animate={{ y: [0, -yRange, 0], opacity: [0.2, 0.6, 0.2], scale: [1, 1.25, 1] }}
               transition={{ duration: dur, repeat: Infinity, delay, ease: 'easeInOut' }}
             />
-          )
-        ))}
+          );
+          return (
+            <motion.div
+              key={i}
+              style={{
+                position: 'absolute', top, left,
+                width: size, height: size, borderRadius: '50%',
+                background: color, boxShadow: `0 0 ${size * 3}px ${color}`,
+                opacity: 0.7, pointerEvents: 'none',
+              }}
+              animate={{ y: [0, -yRange, 0], opacity: [0.35, 1, 0.35], scale: [1, 1.6, 1] }}
+              transition={{ duration: dur, repeat: Infinity, delay, ease: 'easeInOut' }}
+            />
+          );
+        })}
 
         {/* ── Scroll indicator ── */}
         <motion.div

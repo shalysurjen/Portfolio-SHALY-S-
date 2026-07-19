@@ -3,6 +3,7 @@ import useScrollReveal from '../hooks/useScrollReveal';
 import shoppingbot from '../assets/projects/shoppingbot.mp4';
 // import instagramwireframe from '../assets/projects/InstaWireFrame.mp4';
 import junkfile from '../assets/projects/junkfile.jpg';
+import wehrms from '../assets/media/WeHrms.mp4';
 
 const projects = [
   {
@@ -14,8 +15,8 @@ const projects = [
     github: null,
     live: null,
     accent: '#34d399',
-    media: null,
-    mediaType: null,
+    media: wehrms,
+    mediaType: 'video',
   },
   {
     num: '02',
@@ -140,7 +141,7 @@ function ProjectCard({ project, index }) {
         }}>{project.tag}</span>
       </div>
 
-      <h3 style={{ fontFamily: 'Space Grotesk, sans-serif', fontSize: 22, fontWeight: 700, color: 'var(--text)', marginBottom: 12, lineHeight: 1.2 }}>
+      <h3 style={{ fontFamily: 'Manrope, sans-serif', fontSize: 22, fontWeight: 700, color: 'var(--text)', marginBottom: 12, lineHeight: 1.2, letterSpacing: '-0.1px' }}>
         {project.title}
       </h3>
       <p style={{ color: 'var(--muted)', fontSize: 13.5, lineHeight: 1.8, margin: '0 0 20px', flex: 1 }}>

@@ -185,7 +185,7 @@ export default function Contact() {
             className="glass-card"
             style={{ padding: 36 }}
           >
-            <h3 style={{ fontFamily: 'Space Grotesk, sans-serif', fontSize: 20, fontWeight: 700, color: 'var(--text)', marginBottom: 28 }}>
+            <h3 style={{ fontFamily: 'Manrope, sans-serif', fontSize: 20, fontWeight: 700, color: 'var(--text)', marginBottom: 28, letterSpacing: '-0.1px' }}>
               Send a Message
             </h3>
             <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 18 }}>

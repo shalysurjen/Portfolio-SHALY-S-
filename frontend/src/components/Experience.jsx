@@ -12,6 +12,7 @@ import ecommerceVideo from '../assets/media/E-commerce.mp4';
 import inspireCertImg from '../assets/media/inspirecert.jpg';
 import analysisDash1  from '../assets/media/inspireanalysis1.jpg';
 import analysisDash2  from '../assets/media/inspireanalysis2.jpg';
+import hrmsVideo from '../assets/media/WeHrms.mp4';
 
 /* ─────────────────────────────────────────────────────────────
    DATA
@@ -25,7 +26,7 @@ const experiences = [
     desc:     'Contributing to full-stack web application development using React.js, Java, Spring Boot, and MySQL to build responsive, scalable solutions. Designing user-centric UI/UX layouts, improving usability, and applying on-page SEO best practices. Preparing a Keycloak authentication proof-of-concept covering OAuth2 fundamentals and JWT-based setup for secure application access.',
     tags:     ['Java', 'Spring Boot', 'React.js', 'MySQL', 'Keycloak', 'JWT', 'REST API'],
     color:    '#34d399',
-    media: [],
+    media: [ { type: 'video', src: hrmsVideo, caption: 'Instagram Clone Wireframe' },],
   },
   {
     role:     'Web Development Intern',
@@ -474,7 +475,7 @@ function TimelineItem({ exp, delay }) {
 
         {/* 1. Role + badge */}
         <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', flexWrap: 'wrap', gap: 8, marginBottom: 4 }}>
-          <h3 style={{ fontFamily: 'Space Grotesk, sans-serif', fontSize: 17, fontWeight: 700, color: 'var(--text)', lineHeight: 1.3 }}>
+          <h3 style={{ fontFamily: 'Manrope, sans-serif', fontSize: 17, fontWeight: 700, color: 'var(--text)', lineHeight: 1.3, letterSpacing: '-0.1px' }}>
             {exp.role}
           </h3>
           <span style={{
